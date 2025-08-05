@@ -1,0 +1,20 @@
+.
+├── include/
+│   ├── Grid.h        ← “what a Grid can do” (declaration only)
+│   └── Game.h        ← “what a Game can do” (declaration only)
+├── src/
+│   ├── main.cpp      ← entry‑point: construct Game and call run()
+│   ├── Grid.cpp      ← Grid’s implementation (map generation & draw)
+│   └── Game.cpp      ← Game’s implementation (loop, input & player logic)
+└── build.sh          ← your compile‑and‑run script
+
+
+
+
+1. include/Grid.h / src/Grid.cpp
+
+    Why? Keeps all map‑related code (border, interior, draw, collision check) together, so you can tweak or swap out the dungeon generator without touching game logic.
+
+2. include/Game.h / src/Game.cpp
+
+    Why? Encapsulates the game loop, input parsing, and player state. Makes it easy to add monsters, combat, or new commands later.
