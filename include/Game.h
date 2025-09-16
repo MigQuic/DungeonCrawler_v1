@@ -20,4 +20,5 @@ private:
     Monster         m_monster;      // must be initialized explicitly
     std::vector<int> m_tiers{5, 10, 15, 20, 25, 30, 40};
     bool            m_levelComplete = false;
+    bool            m_gameOver = false;
 };

@@ -225,30 +225,6 @@ src/Monster.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s
 .PHONY : src/Monster.cpp.s
 
-src/NCursesUI.o: src/NCursesUI.cpp.o
-.PHONY : src/NCursesUI.o
-
-# target to build an object file
-src/NCursesUI.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/NCursesUI.cpp.o
-.PHONY : src/NCursesUI.cpp.o
-
-src/NCursesUI.i: src/NCursesUI.cpp.i
-.PHONY : src/NCursesUI.i
-
-# target to preprocess a source file
-src/NCursesUI.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/NCursesUI.cpp.i
-.PHONY : src/NCursesUI.cpp.i
-
-src/NCursesUI.s: src/NCursesUI.cpp.s
-.PHONY : src/NCursesUI.s
-
-# target to generate assembly for a file
-src/NCursesUI.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/NCursesUI.cpp.s
-.PHONY : src/NCursesUI.cpp.s
-
 src/Player.o: src/Player.cpp.o
 .PHONY : src/Player.o
 
@@ -318,9 +294,6 @@ help:
 	@echo "... src/Monster.o"
 	@echo "... src/Monster.i"
 	@echo "... src/Monster.s"
-	@echo "... src/NCursesUI.o"
-	@echo "... src/NCursesUI.i"
-	@echo "... src/NCursesUI.s"
 	@echo "... src/Player.o"
 	@echo "... src/Player.i"
 	@echo "... src/Player.s"

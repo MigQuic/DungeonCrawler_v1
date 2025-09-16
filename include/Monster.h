@@ -8,5 +8,5 @@ class Monster : public Entity {
         Monster(int x, int y, int hp);
 
         // still can do AI later
-        void update(const Grid& grid) override;     
+        void update(int command, const Grid& grid) override;     
 };
