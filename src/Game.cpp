@@ -1,11 +1,13 @@
 #include "../include/Game.h"
 #include <iostream>
+#include <algorithm> // For std::ranges
+#include <optional>  // For std::optional
 
 // 1) Game ctor: init grid+player, seed RNG, and spawn first monster
-Game::Game(int rows, int statusCols)
-    : m_grid(rows, statusCols),
+Game::Game(int rows, int cols)
+    : m_grid(rows, cols),
       m_player(1, 1, /*playerHP=*/5),
-      m_monster(0, 0, /*hp=*/0), // dummy, real spawn happens below
+      // m_monster is default-initialized to empty
       m_rng(std::random_device{}())
 {
     spawnMonster();
@@ -20,15 +22,19 @@ void Game::run()
         m_grid.clearScreen();
         drawScene();
 
-        // 2) Draw status info
-        std::cout << "HP: " << m_player.getHP() << " | Monster HP: " << m_monster.getHP() << "\n";
+        // 2) Draw status info (only if monster exists)
+        std::cout << "HP: " << m_player.getHP();
+        if (m_monster) {
+            std::cout << " | Monster HP: " << m_monster->getHP();
+        }
+        std::cout << "\n";
 
         // 3) Get user input and update player
         char command = getPlayerInput();
         m_player.update(command, m_grid);
 
-        // 4) Check for collision and handle it
-        if (m_player.collidesWith(m_monster))
+        // 4) Check for collision and handle it (only if monster exists)
+        if (m_monster && m_player.collidesWith(*m_monster))
         {
             handleCollision();
         }
@@ -49,7 +55,7 @@ void Game::run()
 void Game::handleCollision()
 {
     int pHP = m_player.getHP();
-    int mHP = m_monster.getHP();
+    int mHP = m_monster->getHP();
 
     if (pHP > mHP)
     {
@@ -79,7 +85,7 @@ void Game::handleDuel()
     while (true)
     {
         int pRoll = getRandomInt(1, 6);
-        int mRoll = getRandomInt(1, 6);
+        int mRoll = getRandomInt(1, 6); // Monster could have its own dice later
         std::cout << "Your roll " << pRoll
                   << " vs. monster's " << mRoll << ".\n";
 
@@ -109,7 +115,7 @@ void Game::handleDuel()
 // 5) Reward
 void Game::earnHP()
 {
-    int newHP = m_player.getHP() + m_monster.getHP();
+    int newHP = m_player.getHP() + m_monster->getHP();
     m_player.setHP(newHP);
 }
 
@@ -118,37 +124,35 @@ void Game::spawnMonster()
 {
 
     int playerHP = m_player.getHP();
-    std::vector<int> allowed; /*fair combat*/
+    std::vector<int> allowedTiers;
 
-    // filter tiers
-    for (int t : m_tiers)
-    {
-        if (t >= playerHP && t <= playerHP + 5)
-            allowed.push_back(t);
-    }
+    // Use a standard algorithm to filter for allowed tiers (C++11 and later)
+    std::copy_if(m_tiers.begin(), m_tiers.end(), std::back_inserter(allowedTiers),
+                 [playerHP](int tier) { return tier >= playerHP && tier <= playerHP + 5; });
 
-    if (allowed.size() == 1)
+    if (allowedTiers.size() == 1 && m_tiers.back() == allowedTiers.front())
     {
         std::cout << "👹 FINAL BATTLE BEGINS!\n\n";
     }
 
-    if (allowed.empty())
+    if (allowedTiers.empty())
     {
         // no fair fight remains → level complete
+        m_monster.reset(); // Remove the monster from the game
         m_levelComplete = true; // Breaks the Game::run()'s loop
         return;                 // LEVEL COMPLETE
     }
 
     // Pick a random HP and interior cell
-    int randIndex = getRandomInt(0, allowed.size() - 1);
-    int chosenHP = allowed[randIndex];
+    int randIndex = getRandomInt(0, allowedTiers.size() - 1);
+    int chosenHP = allowedTiers[randIndex];
     int maxX = m_grid.width() - 2;
     int maxY = m_grid.height() - 2;
     int spawnX = getRandomInt(1, maxX);
     int spawnY = getRandomInt(1, maxY);
 
-    // Construct the monster with explicit coords + HP
-    m_monster = Monster(spawnX, spawnY, chosenHP);
+    // Use emplace to construct the monster in-place
+    m_monster.emplace(spawnX, spawnY, chosenHP);
 }
 
 int Game::getRandomInt(int min, int max)
@@ -160,44 +164,28 @@ int Game::getRandomInt(int min, int max)
 char Game::getPlayerInput() const
 {
     char cmd;
-    // Prompt until valid input
-    while (true)
-    {
-        std::cout << "Move (w/a/s/d): ";
-        std::cin >> cmd;
-        cmd = static_cast<char>(std::tolower(cmd));
+    std::cout << "Move (w/a/s/d): ";
+    std::cin >> cmd;
 
-        if (cmd == 'w' || cmd == 'a' || cmd == 's' || cmd == 'd')
-        {
-            return cmd;
-        }
-
-        std::cout << "Invalid. Use w/a/s/d.\n";
+    // Clear any error flags and ignore the rest of the line
+    // This makes input handling more robust if the user types "dave" instead of "d"
+    if (std::cin.fail()) {
         std::cin.clear();
-        std::cin.ignore(1000, '\n');
     }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    return static_cast<char>(std::tolower(cmd));
 }
 
 void Game::drawScene() const
 {
-    for (int y = 0; y < m_grid.height(); ++y)
-    {
-        for (int x = 0; x < m_grid.width(); ++x)
-        {
-            // Check for entities at this position first
-            if (m_player.getX() == x && m_player.getY() == y)
-            {
-                std::cout << m_player.getSymbol();
-            }
-            else if (m_monster.getX() == x && m_monster.getY() == y)
-            {
-                std::cout << m_monster.getSymbol();
-            }
-            else
-            {
-                std::cout << m_grid.getCell(x, y);
-            }
-        }
-        std::cout << "\n";
+    // Collect all drawable entities
+    std::vector<const Entity*> entitiesToDraw;
+    entitiesToDraw.push_back(&m_player);
+    if (m_monster) {
+        entitiesToDraw.push_back(&(*m_monster));
     }
+
+    // The grid is now responsible for the actual drawing
+    m_grid.draw(entitiesToDraw);
 }

@@ -11,7 +11,7 @@ class Entity{
         virtual ~Entity() = default;
 
         // Each subclass implements its own “behavior” per turn
-        virtual void update(int command, const Grid& grid) = 0;
+        virtual void update(char command, const Grid& grid) = 0;
 
         bool collidesWith(const Entity& other) const {
             return m_x == other.m_x && m_y == other.m_y;
@@ -21,6 +21,7 @@ class Entity{
         int getX() const;
         int getY() const;    
         int getHP() const;
+        char getSymbol() const;
 
         // Setters
         void setPosition(int x, int y);

@@ -4,25 +4,27 @@
 #include <iostream>
 
 // Constructor
-Entity::Entity(int x, int y, char sym, int hp) :  // sym was a char
-    m_x(x), 
-    m_y(y), 
-    m_sym(sym),
-    m_hp(hp)
-{}
-
+Entity::Entity(int x, int y, char sym, int hp) : m_x(x),
+                                                 m_y(y),
+                                                 m_sym(sym),
+                                                 m_hp(hp)
+{
+}
 
 // Getters
-int Entity::getX() const { return m_x; } 
+int Entity::getX() const { return m_x; }
 int Entity::getY() const { return m_y; }
 int Entity::getHP() const { return m_hp; }
+char Entity::getSymbol() const { return m_sym; }
 
 // Setters
-void Entity::setPosition(int x, int y) {
+void Entity::setPosition(int x, int y)
+{
     m_x = x;
     m_y = y;
 }
 
-void Entity::setHP(int hp) {
+void Entity::setHP(int hp)
+{
     m_hp = hp;
 }

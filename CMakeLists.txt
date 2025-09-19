@@ -7,10 +7,6 @@ project(DungeonCrawler_v1 VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 1) Your headers live under include/
-include_directories(${PROJECT_SOURCE_DIR}/include)
-
-# 2) Build the executable from your .cpp files
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Grid.cpp
@@ -19,3 +15,6 @@ add_executable(${PROJECT_NAME}
     src/Monster.cpp
     src/Game.cpp
 )
+
+# Apply include directories to our specific target
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)

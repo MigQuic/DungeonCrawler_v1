@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include <random>
+#include <optional>
 #include <vector>
 
 class Game
@@ -22,7 +23,7 @@ private:
 
     Grid m_grid;
     Player m_player;
-    Monster m_monster;  // must be initialized explicitly
+    std::optional<Monster> m_monster;
     std::mt19937 m_rng; // Mersenne Twister random engine
     std::vector<int> m_tiers{5, 10, 15, 20, 25, 30, 40};
     bool m_levelComplete = false;

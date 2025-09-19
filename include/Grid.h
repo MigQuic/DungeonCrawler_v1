@@ -2,22 +2,22 @@
 #include <string>
 #include <vector>
 
-class Grid {
-    public:
-        Grid(int rows, int cols);
+// Forward-declare Entity so we can use it in the draw method signature
+class Entity;
 
-        // Clears the console (crude) then re-draws the map
-        void clearScreen() const;
+class Grid
+{
+public:
+    Grid(int rows, int cols);
 
-        // it also draws the player and monster
-        void draw(int px, int py, int mx, int my) const;
-        bool isWall(int x, int y) const;
+    // Draws the map and stamps the given entities on top
+    void draw(const std::vector<const Entity*>& entities) const;
+    void clearScreen() const; // A simple way to clear the console
+    bool isWall(int x, int y) const;
 
-        // Game needs to ask the Grid for the size of m_cells
-        int width()  const;
-        int height() const;
-        char getCell(int x, int y) const;
+    int width() const;
+    int height() const;
 
-    private:
+private:
     std::vector<std::string> m_cells;
 };

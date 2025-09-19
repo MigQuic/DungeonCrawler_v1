@@ -1,8 +1,9 @@
 #include "../include/Grid.h"
+#include "../include/Entity.h" // Provide the full definition of Entity
 #include <iostream>
 
-
-Grid::Grid(int rows, int cols) {
+Grid::Grid(int rows, int cols)
+{
     std::string border(cols, '#');
     m_cells.push_back(border);
 
@@ -13,45 +14,44 @@ Grid::Grid(int rows, int cols) {
     m_cells.push_back(border);
 }
 
-void Grid::clearScreen() const {
+void Grid::clearScreen() const
+{
     // shrink the gap or swap for ANSI escape if you like
     std::cout << std::string(4, '\n');
 }
 
+void Grid::draw(const std::vector<const Entity *> &entities) const
+{
+    // Create a mutable copy of the grid to draw entities on
+    std::vector<std::string> output_grid = m_cells;
 
-void Grid::draw(int px, int py, int mx, int my) const {
-    
-    for (int y = 0; y < (int)m_cells.size(); ++y) {
-        for (int x = 0; x < (int)m_cells[y].size(); ++x) {
-            if      (x == px && y == py)      std::cout << '@';
-            else if (x == mx && y == my)      std::cout << 'M';
-            else                              std::cout << m_cells[y][x];
+    // "Stamp" each entity onto the output grid
+    for (const auto *entity : entities)
+    {
+        if (entity)
+        { // Ensure the pointer is not null
+            output_grid[entity->getY()][entity->getX()] = entity->getSymbol();
         }
-        std::cout << "\n";
+    }
+
+    // Print the final composed grid
+    for (const auto &row : output_grid)
+    {
+        std::cout << row << "\n";
     }
 }
 
-
-bool Grid::isWall(int x, int y) const {
+bool Grid::isWall(int x, int y) const
+{
     return m_cells[y][x] == '#';
 }
 
-
-
-/* 
-These two methods are just helpers so Game can ask the Grid “how big am I?” 
-when it needs to, for example, pick a random spawn cell. 
-*/
-
-int Grid::width() const {           // defensive programming
-    return m_cells.empty() ? 0 
-    : static_cast<int>(m_cells[0].size());
+int Grid::width() const
+{
+    return m_cells.empty() ? 0 : static_cast<int>(m_cells[0].size());
 }
 
-int Grid::height() const {
+int Grid::height() const
+{
     return static_cast<int>(m_cells.size());
-}
-
-char Grid::getCell(int x, int y) const {
-    return m_cells[x][y];
 }

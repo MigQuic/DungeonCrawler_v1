@@ -5,5 +5,5 @@ class Player : public Entity {
 public:
     Player(int x, int y, int hp);
     
-    void update(int command, const Grid& grid) override;
+    void update(char command, const Grid& grid) override;
 };
