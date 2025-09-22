@@ -129,6 +129,30 @@ DungeonCrawler_v1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/build
 .PHONY : DungeonCrawler_v1/fast
 
+src/ChaserMonster.o: src/ChaserMonster.cpp.o
+.PHONY : src/ChaserMonster.o
+
+# target to build an object file
+src/ChaserMonster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o
+.PHONY : src/ChaserMonster.cpp.o
+
+src/ChaserMonster.i: src/ChaserMonster.cpp.i
+.PHONY : src/ChaserMonster.i
+
+# target to preprocess a source file
+src/ChaserMonster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.i
+.PHONY : src/ChaserMonster.cpp.i
+
+src/ChaserMonster.s: src/ChaserMonster.cpp.s
+.PHONY : src/ChaserMonster.s
+
+# target to generate assembly for a file
+src/ChaserMonster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.s
+.PHONY : src/ChaserMonster.cpp.s
+
 src/Entity.o: src/Entity.cpp.o
 .PHONY : src/Entity.o
 
@@ -201,29 +225,29 @@ src/Grid.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Grid.cpp.s
 .PHONY : src/Grid.cpp.s
 
-src/Monster.o: src/Monster.cpp.o
-.PHONY : src/Monster.o
+src/LooterMonster.o: src/LooterMonster.cpp.o
+.PHONY : src/LooterMonster.o
 
 # target to build an object file
-src/Monster.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o
-.PHONY : src/Monster.cpp.o
+src/LooterMonster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o
+.PHONY : src/LooterMonster.cpp.o
 
-src/Monster.i: src/Monster.cpp.i
-.PHONY : src/Monster.i
+src/LooterMonster.i: src/LooterMonster.cpp.i
+.PHONY : src/LooterMonster.i
 
 # target to preprocess a source file
-src/Monster.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.i
-.PHONY : src/Monster.cpp.i
+src/LooterMonster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.i
+.PHONY : src/LooterMonster.cpp.i
 
-src/Monster.s: src/Monster.cpp.s
-.PHONY : src/Monster.s
+src/LooterMonster.s: src/LooterMonster.cpp.s
+.PHONY : src/LooterMonster.s
 
 # target to generate assembly for a file
-src/Monster.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s
-.PHONY : src/Monster.cpp.s
+src/LooterMonster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.s
+.PHONY : src/LooterMonster.cpp.s
 
 src/Player.o: src/Player.cpp.o
 .PHONY : src/Player.o
@@ -282,6 +306,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... DungeonCrawler_v1"
+	@echo "... src/ChaserMonster.o"
+	@echo "... src/ChaserMonster.i"
+	@echo "... src/ChaserMonster.s"
 	@echo "... src/Entity.o"
 	@echo "... src/Entity.i"
 	@echo "... src/Entity.s"
@@ -291,9 +318,9 @@ help:
 	@echo "... src/Grid.o"
 	@echo "... src/Grid.i"
 	@echo "... src/Grid.s"
-	@echo "... src/Monster.o"
-	@echo "... src/Monster.i"
-	@echo "... src/Monster.s"
+	@echo "... src/LooterMonster.o"
+	@echo "... src/LooterMonster.i"
+	@echo "... src/LooterMonster.s"
 	@echo "... src/Player.o"
 	@echo "... src/Player.i"
 	@echo "... src/Player.s"

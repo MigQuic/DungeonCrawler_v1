@@ -125,24 +125,10 @@ CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Player.cpp" -o CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.s
 
-CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/flags.make
-CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o: /home/mq/Documents/CODING\ PROJECTS/C++/DungeonCrawler_v1/src/Monster.cpp
-CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o -MF CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o.d -o CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o -c "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Monster.cpp"
-
-CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Monster.cpp" > CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.i
-
-CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Monster.cpp" -o CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s
-
 CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/flags.make
 CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o: /home/mq/Documents/CODING\ PROJECTS/C++/DungeonCrawler_v1/src/Game.cpp
 CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o -MF CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o.d -o CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o -c "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Game.cpp"
 
 CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.i: cmake_force
@@ -153,14 +139,43 @@ CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/Game.cpp" -o CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.s
 
+CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/flags.make
+CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o: /home/mq/Documents/CODING\ PROJECTS/C++/DungeonCrawler_v1/src/ChaserMonster.cpp
+CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o -MF CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o.d -o CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o -c "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/ChaserMonster.cpp"
+
+CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/ChaserMonster.cpp" > CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.i
+
+CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/ChaserMonster.cpp" -o CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.s
+
+CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/flags.make
+CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o: /home/mq/Documents/CODING\ PROJECTS/C++/DungeonCrawler_v1/src/LooterMonster.cpp
+CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o: CMakeFiles/DungeonCrawler_v1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o -MF CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o.d -o CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o -c "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/LooterMonster.cpp"
+
+CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/LooterMonster.cpp" > CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.i
+
+CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/src/LooterMonster.cpp" -o CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.s
+
 # Object files for target DungeonCrawler_v1
 DungeonCrawler_v1_OBJECTS = \
 "CMakeFiles/DungeonCrawler_v1.dir/src/main.cpp.o" \
 "CMakeFiles/DungeonCrawler_v1.dir/src/Grid.cpp.o" \
 "CMakeFiles/DungeonCrawler_v1.dir/src/Entity.cpp.o" \
 "CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.o" \
-"CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o" \
-"CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o"
+"CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o" \
+"CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o" \
+"CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o"
 
 # External object files for target DungeonCrawler_v1
 DungeonCrawler_v1_EXTERNAL_OBJECTS =
@@ -169,11 +184,12 @@ DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/main.cpp.o
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/Grid.cpp.o
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/Entity.cpp.o
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.o
-DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/Game.cpp.o
+DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/ChaserMonster.cpp.o
+DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/build.make
 DungeonCrawler_v1: CMakeFiles/DungeonCrawler_v1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable DungeonCrawler_v1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/mq/Documents/CODING PROJECTS/C++/DungeonCrawler_v1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable DungeonCrawler_v1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DungeonCrawler_v1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

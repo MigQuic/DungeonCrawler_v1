@@ -12,8 +12,9 @@ add_executable(${PROJECT_NAME}
     src/Grid.cpp
     src/Entity.cpp
     src/Player.cpp
-    src/Monster.cpp
     src/Game.cpp
+    src/ChaserMonster.cpp
+    src/LooterMonster.cpp
 )
 
 # Apply include directories to our specific target

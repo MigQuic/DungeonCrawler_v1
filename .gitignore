@@ -1,9 +1,8 @@
-# Ignore the entire build directory
+# Ignore the build directory
 /build/
 
-# Ignore executables if they are ever created in the root
+# Ignore the executable file if it's in the root
 DungeonCrawler_v1
-dungeon_crawler
 
-# OS-specific files
-.DS_Store
+# Ignore compiled object files
+*.o

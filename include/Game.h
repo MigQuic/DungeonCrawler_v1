@@ -5,6 +5,7 @@
 #include <random>
 #include <optional>
 #include <vector>
+#include <memory>
 
 class Game
 {
@@ -15,15 +16,15 @@ public:
 private:
     void spawnMonster(); // encapsulates all RNG & filtering
     char getPlayerInput() const;
-    void handleCollision();
-    void handleDuel();
-    void earnHP(); // after a won duel
+    void handleCollisions();
+    void handleDuel(std::vector<std::unique_ptr<Monster>>::iterator& monster_it);
+    void earnHP(const Monster& defeatedMonster);
     void drawScene() const;
     int getRandomInt(int min, int max);
 
     Grid m_grid;
     Player m_player;
-    std::optional<Monster> m_monster;
+    std::vector<std::unique_ptr<Monster>> m_monsters;
     std::mt19937 m_rng; // Mersenne Twister random engine
     std::vector<int> m_tiers{5, 10, 15, 20, 25, 30, 40};
     bool m_levelComplete = false;
