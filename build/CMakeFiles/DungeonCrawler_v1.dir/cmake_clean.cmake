@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/DungeonCrawler_v1.dir/src/Grid.cpp.o.d"
   "CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o"
   "CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.o.d"
+  "CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o"
+  "CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o.d"
   "CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.o"
   "CMakeFiles/DungeonCrawler_v1.dir/src/Player.cpp.o.d"
   "CMakeFiles/DungeonCrawler_v1.dir/src/main.cpp.o"

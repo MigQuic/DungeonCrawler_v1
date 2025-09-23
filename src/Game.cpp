@@ -27,7 +27,8 @@ void Game::run()
 
         // 2) Draw status info (only if monster exists)
         std::cout << "HP: " << m_player.getHP();
-        if (!m_monsters.empty()) {
+        if (!m_monsters.empty())
+        {
             std::cout << " | Monsters: " << m_monsters.size();
         }
         std::cout << "\n";
@@ -35,14 +36,11 @@ void Game::run()
         // 3) Get user input and update player
         char command = getPlayerInput();
         m_player.update(command, m_grid);
-        
+
         // 4) Update all monsters
-        for (auto& monster : m_monsters) {
-            // Here we can downcast to call the specific update method
-            if (auto* chaser = dynamic_cast<ChaserMonster*>(monster.get())) {
-                chaser->update(m_player, m_grid);
-            }
-            // Add other monster types here...
+        for (auto &monster : m_monsters)
+        {
+            monster->update(m_player, m_grid);
         }
 
         // 5) Check for collisions and handle them
@@ -64,36 +62,45 @@ void Game::run()
 void Game::handleCollisions()
 {
     auto it = m_monsters.begin();
-    while (it != m_monsters.end()) {
-        if (m_player.collidesWith(**it)) {
-            Monster& monster = **it;
+    while (it != m_monsters.end())
+    {
+        if (m_player.collidesWith(**it))
+        {
+            Monster &monster = **it;
             int pHP = m_player.getHP();
             int mHP = monster.getHP();
 
-            if (pHP > mHP) {
+            if (pHP > mHP)
+            {
                 earnHP(monster);
                 std::cout << "🚀 You defeated the tier-" << mHP << " monster!\n";
                 std::cin.ignore();
                 it = m_monsters.erase(it); // Remove monster and get next iterator
-                spawnMonster(); // Spawn a new one
-            } else if (pHP < mHP) {
+                spawnMonster();            // Spawn a new one
+            }
+            else if (pHP < mHP)
+            {
                 std::cout << "💀 You were defeated by the tier-" << mHP << " monster…\n";
                 std::cin.ignore();
                 m_gameOver = true;
                 return; // Game over, no need to check other collisions
-            } else {
+            }
+            else
+            {
                 std::cout << "Equal strength! A special duel begins…\n";
                 std::cin.ignore();
                 handleDuel(it); // Pass iterator to handle removal on win/loss
             }
-        } else {
+        }
+        else
+        {
             ++it;
         }
     }
 }
 
 // 4) Dice‐roll duel on ties
-void Game::handleDuel(std::vector<std::unique_ptr<Monster>>::iterator& monster_it)
+void Game::handleDuel(std::vector<std::unique_ptr<Monster>>::iterator &monster_it)
 {
     std::cout << "🎲 Rolling dice to decide the duel... 🎲\n";
     while (true)
@@ -128,7 +135,7 @@ void Game::handleDuel(std::vector<std::unique_ptr<Monster>>::iterator& monster_i
 }
 
 // 5) Reward
-void Game::earnHP(const Monster& defeatedMonster)
+void Game::earnHP(const Monster &defeatedMonster)
 {
     int newHP = m_player.getHP() + defeatedMonster.getHP();
     m_player.setHP(newHP);
@@ -143,7 +150,8 @@ void Game::spawnMonster()
 
     // Use a standard algorithm to filter for allowed tiers (C++11 and later)
     std::copy_if(m_tiers.begin(), m_tiers.end(), std::back_inserter(allowedTiers),
-                 [playerHP](int tier) { return tier >= playerHP && tier <= playerHP + 5; });
+                 [playerHP](int tier)
+                 { return tier >= playerHP && tier <= playerHP + 5; });
 
     if (allowedTiers.size() == 1 && m_tiers.back() == allowedTiers.front())
     {
@@ -153,7 +161,7 @@ void Game::spawnMonster()
     if (allowedTiers.empty())
     {
         // no fair fight remains → level complete
-        m_monsters.clear(); // Remove all monsters
+        m_monsters.clear();     // Remove all monsters
         m_levelComplete = true; // Breaks the Game::run()'s loop
         return;                 // LEVEL COMPLETE
     }
@@ -167,7 +175,16 @@ void Game::spawnMonster()
     int spawnY = getRandomInt(1, maxY);
 
     // Create a new monster and add it to our vector
-    m_monsters.push_back(std::make_unique<ChaserMonster>(spawnX, spawnY, chosenHP));
+    if (getRandomInt(0, 1) == 0)
+    {
+        // 50% chance for a Chaser
+        m_monsters.push_back(std::make_unique<ChaserMonster>(spawnX, spawnY, chosenHP));
+    }
+    else
+    {
+        // 50% chance for a Looter
+        m_monsters.push_back(std::make_unique<LooterMonster>(spawnX, spawnY, chosenHP));
+    }
 }
 
 int Game::getRandomInt(int min, int max)
@@ -184,7 +201,8 @@ char Game::getPlayerInput() const
 
     // Clear any error flags and ignore the rest of the line
     // This makes input handling more robust if the user types "dave" instead of "d"
-    if (std::cin.fail()) {
+    if (std::cin.fail())
+    {
         std::cin.clear();
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -195,11 +213,12 @@ char Game::getPlayerInput() const
 void Game::drawScene() const
 {
     // Collect all drawable entities
-    std::vector<const Entity*> entitiesToDraw;
+    std::vector<const Entity *> entitiesToDraw;
     entitiesToDraw.push_back(&m_player);
-    for (const auto& monster : m_monsters) {
+    for (const auto &monster : m_monsters)
+    {
         entitiesToDraw.push_back(monster.get());
-    } 
+    }
 
     // The grid is now responsible for the actual drawing
     m_grid.draw(entitiesToDraw);

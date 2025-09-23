@@ -13,6 +13,7 @@ add_executable(${PROJECT_NAME}
     src/Entity.cpp
     src/Player.cpp
     src/Game.cpp
+    src/Monster.cpp
     src/ChaserMonster.cpp
     src/LooterMonster.cpp
 )

@@ -10,8 +10,9 @@ class Entity{
         Entity(int x, int y, char sym, int hp);  // sym was a char
         virtual ~Entity() = default;
 
-        // Each subclass implements its own “behavior” per turn
-        virtual void update(char command, const Grid& grid) = 0;
+        // Provide a default empty implementation.
+        // Subclasses like Player can override it. Others can just inherit the empty version.
+        virtual void update([[maybe_unused]] char command, [[maybe_unused]] const Grid& grid) { /* Default: do nothing */ }
 
         bool collidesWith(const Entity& other) const {
             return m_x == other.m_x && m_y == other.m_y;

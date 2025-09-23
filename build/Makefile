@@ -249,6 +249,30 @@ src/LooterMonster.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/LooterMonster.cpp.s
 .PHONY : src/LooterMonster.cpp.s
 
+src/Monster.o: src/Monster.cpp.o
+.PHONY : src/Monster.o
+
+# target to build an object file
+src/Monster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.o
+.PHONY : src/Monster.cpp.o
+
+src/Monster.i: src/Monster.cpp.i
+.PHONY : src/Monster.i
+
+# target to preprocess a source file
+src/Monster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.i
+.PHONY : src/Monster.cpp.i
+
+src/Monster.s: src/Monster.cpp.s
+.PHONY : src/Monster.s
+
+# target to generate assembly for a file
+src/Monster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DungeonCrawler_v1.dir/build.make CMakeFiles/DungeonCrawler_v1.dir/src/Monster.cpp.s
+.PHONY : src/Monster.cpp.s
+
 src/Player.o: src/Player.cpp.o
 .PHONY : src/Player.o
 
@@ -321,6 +345,9 @@ help:
 	@echo "... src/LooterMonster.o"
 	@echo "... src/LooterMonster.i"
 	@echo "... src/LooterMonster.s"
+	@echo "... src/Monster.o"
+	@echo "... src/Monster.i"
+	@echo "... src/Monster.s"
 	@echo "... src/Player.o"
 	@echo "... src/Player.i"
 	@echo "... src/Player.s"

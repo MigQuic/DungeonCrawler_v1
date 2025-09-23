@@ -1,11 +1,20 @@
-// #include "../include/Monster.h"
+#include "../include/Monster.h"
+#include "../include/Grid.h"
+#include "../include/Player.h"
+#include <utility> // For std::pair
 
-// // Forward everything to Entity(x,y,sym,hp)
-// Monster::Monster(int x, int y, int hp) : Entity(x, y, 'M', hp)
-// {
-// }
+void Monster::update(const Player &player, const Grid &grid)
+{
+    // Delegate the "how to move" decision to the subclass
+    std::pair<int, int> direction = getMoveDirection(player);
+    int dx = direction.first;
+    int dy = direction.second;
 
-// void Monster::update([[maybe_unused]] char command, [[maybe_unused]] const Grid &grid)
-// {
-//   // no-op for now; can add AI later
-// }
+    int newX = m_x + dx;
+    int newY = m_y + dy;
+
+    if (!grid.isWall(newX, newY))
+    {
+        setPosition(newX, newY);
+    }
+}
