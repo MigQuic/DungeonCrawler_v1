@@ -1,104 +1,48 @@
-                        PROJECT OVERVIEW:
-
-https://chatgpt.com/c/686bf666-b968-8003-9835-5d3bc9734478
+PROJECT OVERVIEW:
 
 DungeonCrawler is a text‑based console game where you:
-
-    1. See a dungeon map drawn with #, . and special symbols (@ for you, M for monsters).
-    2. Move around with w/a/s/d.
-    3. Encounter monsters and trigger simple combat.
-    4. (Later) Save/load your progress, add inventory, more monsters, etc.
-
+    1. See a dungeon map with you as '@' and monsters as 'C' or 'L'.
+    2. Move with w/a/s/d to explore.
+    3. Encounter monsters, which triggers combat based on HP.
+    4. Defeat monsters to gain their HP and face stronger foes.
 
 Milestones (Levels 1–5)
-
-    LEVEL 1: Grid generates and prints; you can move @ inside the walls
-    LEVEL 2: One or more M monster(s); stepping on M triggers an “encounter”
-    LEVEL 3: Hit‑points + combat roll; save & load game state to a file
-    LEVEL 4: Refactored into classes/modules (Grid, Game, Monster, …); tests
-    LEVEL 5: Graphical front‑end (SDL/Qt), networking or plugins, polished UX
-
-EXPECTED OUTPUT:
-
-LEVEL 1:
-
-    @ starts at (1,1).
-    Typing d shifts it right; s moves you down—walls (#) block you.
-
-##########
-#@.......#
-#........#
-#........#
-#........#
-#........#
-#........#
-#........#
-#........#
-##########
-Move (w/a/s/d):
-
-LEVEL 2:
+    [✓] LEVEL 1: Grid generates and prints; player can move '@' inside walls.
+    [✓] LEVEL 2: Monsters spawn; collision triggers an encounter.
+    [✓] LEVEL 3: HP system implemented; combat decided by HP comparison. A dice-roll duel occurs on a tie.
+    [✓] LEVEL 4: Code refactored into a clean class hierarchy (Entity, Player, Monster, etc.).
+    [ ] LEVEL 5: (Future) Add more features like inventory, items, more monster types, and saving/loading the game.
 
 Design summary
-Player HP & Missions
-
-The player earns HP (or “power points”) by completing missions.
-
-Starting HP is some baseline (e.g. 5 HP).
+================
+Class Hierarchy
+---------------
+The project uses an object-oriented design:
+- Entity: The base for anything with a position, symbol, and HP.
+  - Player: The user-controlled '@'.
+  - Monster: An abstract base for enemies.
+    - ChaserMonster ('C'): AI chases the player.
+    - LooterMonster ('L'): AI flees from the player.
 
 Monster Tiers
-
-Each monster has an HP requirement: e.g.
-
-“Weak” monsters: 5 HP
-
-“Average” monsters: 20 HP
-
-“Strong” monsters: 50 HP
-
-Monsters spawn randomly on empty cells—but only tiers the player can reasonably encounter (e.g. don’t spawn two strong ones if player has low HP).
+-------------
+The player starts with 5 HP. Monsters spawn with HP from a list of tiers {5, 10, 15, 20, 25, 30, 40}.
+The game spawns monsters with HP in a range related to the player's current HP, ensuring a fair challenge.
+When all beatable monster tiers are exhausted, the level is complete.
 
 Collision outcome
-
-Player HP > Monster HP → monster dies (removed from map).
-
-Player HP < Monster HP → player dies (game over).
-
-Player HP == Monster HP → special “equal‐level” encounter (future mechanic).
-
-Level 2 tasks
-Add HP stat to Entity
-
-Create a small Stats struct (or just int m_hp) in Entity.
-
-Initialize Player with baseline HP and Monster with a tiered HP value.
-
-Tiered monster generation
-
-Define a list of allowed monster HP tiers, e.g. {5, 20, 50}.
-
-In Game, randomly pick a tier based on player’s current HP (e.g. only tiers ≤ playerHP+10).
-
-Place one monster at a random empty cell on the grid.
-
-Implement collision logic
-
-In Game::run(), when collidesWith is true:
-
-cpp
-Copy code
-if (player.hp > monster.hp) {
-  // remove monster, maybe award XP/HP
-}
-else if (player.hp < monster.hp) {
-  // print “You died.” and end game
-}
-else {
-  // print “Equal strength! Special encounter.”
-}
-For now, simply erase the monster or end the loop.
-
-Manual HP‑gain hook
-
-Add a simple placeholder in Game (e.g. pressing ‘h’) that gives the player +5 HP so you can test different tiers without “missions” yet.
-
+-----------------
+When the player and a monster occupy the same cell:
+1. Player HP > Monster HP:
+   - The monster is defeated.
+   - The player's HP increases by the monster's HP.
+   - A new monster spawns.
+2. Player HP < Monster HP:
+   - The player is defeated.
+   - Game Over.
+3. Player HP == Monster HP:
+   - A "Duel" begins!
+   - Player and monster roll a 6-sided die.
+   - The higher roll wins the duel. A tie results in a reroll.
+   - Winning the duel has the same outcome as (1).
+   - Losing the duel has the same outcome as (2).

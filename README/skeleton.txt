@@ -1,20 +1,19 @@
 .
 ├── include/
-│   ├── Grid.h        ← “what a Grid can do” (declaration only)
-│   └── Game.h        ← “what a Game can do” (declaration only)
+│   ├── Entity.h        # Base class for all game objects (Player, Monster)
+│   ├── Player.h        # The user-controlled character '@'
+│   ├── Monster.h       # Abstract base class for all monsters
+│   ├── ChaserMonster.h # A monster 'C' that chases the player
+│   ├── LooterMonster.h # A monster 'L' that flees from the player
+│   ├── Grid.h          # The game map, handles drawing
+│   └── Game.h          # The main game engine, orchestrates everything
 ├── src/
-│   ├── main.cpp      ← entry‑point: construct Game and call run()
-│   ├── Grid.cpp      ← Grid’s implementation (map generation & draw)
-│   └── Game.cpp      ← Game’s implementation (loop, input & player logic)
-└── build.sh          ← your compile‑and‑run script
-
-
-
-
-1. include/Grid.h / src/Grid.cpp
-
-    Why? Keeps all map‑related code (border, interior, draw, collision check) together, so you can tweak or swap out the dungeon generator without touching game logic.
-
-2. include/Game.h / src/Game.cpp
-
-    Why? Encapsulates the game loop, input parsing, and player state. Makes it easy to add monsters, combat, or new commands later.
+│   ├── main.cpp        # Entry-point: constructs Game and calls run()
+│   ├── Entity.cpp      # Implementation for Entity
+│   ├── Player.cpp      # Implementation for Player
+│   ├── Monster.cpp     # Shared "template method" for monster updates
+│   ├── ChaserMonster.cpp # AI logic for ChaserMonster
+│   ├── LooterMonster.cpp # AI logic for LooterMonster
+│   ├── Grid.cpp        # Grid's implementation (map generation & drawing)
+│   └── Game.cpp        # Game's implementation (main loop, rules, state)
+└── CMakeLists.txt      # Build script for CMake
