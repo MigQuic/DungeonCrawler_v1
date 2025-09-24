@@ -6,3 +6,6 @@ DungeonCrawler_v1
 
 # Ignore compiled object files
 *.o
+
+# Ignore my notes these are just for me
+/Notes
