@@ -10,7 +10,7 @@
 // 1) Game ctor: init grid+player, seed RNG, and spawn first monster
 Game::Game(int rows, int cols)
     : m_grid(rows, cols),
-      m_player(1, 1, /*playerHP=*/5),
+      m_player(/*coordinates=*/1, 1, /*HP=*/5),
       m_rng(std::random_device{}())
 {
     spawnMonster();
@@ -123,7 +123,7 @@ void Game::handleDuel(std::vector<std::unique_ptr<Monster>>::iterator &monster_i
         {
             std::cout << "💀 You lost the duel…\n";
             std::cin.ignore();
-            monster_it = m_monsters.erase(monster_it);
+            m_monsters.clear();
             m_gameOver = true; // game over
             return;
         }
@@ -144,16 +144,18 @@ void Game::earnHP(const Monster &defeatedMonster)
 // 6) Encapsulate all monster‐spawn logic & level‐complete check
 void Game::spawnMonster()
 {
-
     int playerHP = m_player.getHP();
     std::vector<int> allowedTiers;
 
     // Use a standard algorithm to filter for allowed tiers (C++11 and later)
-    std::copy_if(m_tiers.begin(), m_tiers.end(), std::back_inserter(allowedTiers),
+    std::copy_if(m_tiers.begin(),
+                 m_tiers.end(),
+                 std::back_inserter(allowedTiers),
+                 // Lambda function here:
                  [playerHP](int tier)
                  { return tier >= playerHP && tier <= playerHP + 5; });
 
-    if (allowedTiers.size() == 1 && m_tiers.back() == allowedTiers.front())
+    if (allowedTiers.size() == 1 && allowedTiers.front() == m_tiers.back())
     {
         std::cout << "👹 FINAL BATTLE BEGINS!\n\n";
     }
@@ -199,12 +201,8 @@ char Game::getPlayerInput() const
     std::cout << "Move (w/a/s/d): ";
     std::cin >> cmd;
 
-    // Clear any error flags and ignore the rest of the line
+    // Clear the input buffer to handle cases where user enters more than one character
     // This makes input handling more robust if the user types "dave" instead of "d"
-    if (std::cin.fail())
-    {
-        std::cin.clear();
-    }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     return static_cast<char>(std::tolower(cmd));

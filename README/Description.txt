@@ -1,0 +1,95 @@
+ # Dungeon Crawler - Project Roadmap
+ 
+ This document outlines a revised roadmap for developing the Dungeon Crawler game. The core gameplay loop is centered around a "predator-prey" dynamic with clear risk-reward decisions.
+ 
+ **Core Gameplay Loop:**
+ - The **Player (`@`)** wants to retrieve valuable items.
+ - The **Looter (`L`)** is a weak monster that also seeks items. It serves as a low-risk target for the player.
+ - The **Chaser (`C`)** is a strong monster that hunts the player. It serves as the primary source of risk and tension.
+ 
+ The player must constantly balance the reward of hunting Looters and grabbing items against the risk of being cornered by a Chaser.
+ 
+ ---
+ 
+ ### [✓] Milestone 1: Basic Grid & Player Movement
+ 
+ **Objective:** Create the game world and allow the player to exist and move within it.
+ 
+ *   [✓] **`Grid` Class:** Generates and stores a 2D map with walls (`#`) and open floor (`.`).
+ *   [✓] **`Player` Class:** Represents the player (`@`) with a position on the grid.
+ *   [✓] **Game Loop:** Takes user input (`w/a/s/d`) to move the player, preventing movement into walls.
+ *   [✓] **Drawing:** The game clears the screen and redraws the grid with the player's new position each turn.
+ 
+ ---
+ 
+ ### [✓] Milestone 2: Monster Spawning & Collision
+ 
+ **Objective:** Introduce a basic antagonist and a way to interact with it.
+ 
+ *   [✓] **`Monster` Class:** A simple entity that spawns at a random location.
+ *   [✓] **Collision Detection:** The game checks if the player's coordinates match a monster's coordinates.
+ *   [✓] **Encounter:** A collision triggers a basic "encounter" message, stopping the game flow temporarily.
+ 
+ ---
+ 
+ ### [✓] Milestone 3: HP & Combat Mechanics
+ 
+ **Objective:** Implement a core combat system to resolve encounters.
+ 
+ *   [✓] **HP System:** `Player` and `Monster` entities are given Hit Points (HP).
+ *   [✓] **Combat Resolution:** When a collision occurs, HP is compared.
+ *   [✓] **Duel on Tie:** If HP is equal, a dice-roll duel (`1d6` vs `1d6`) decides the winner.
+ 
+ ---
+ 
+ ### [✓] Milestone 4: Object-Oriented Refactoring
+ 
+ **Objective:** Improve code structure and maintainability by using object-oriented principles.
+ 
+ *   [✓] **`Entity` Base Class:** Created to hold common data and functionality (position, HP, symbol).
+ *   [✓] **Class Hierarchy:** `Player` and `Monster` now inherit from `Entity`.
+ *   [✓] **Specialized Monsters:** `Monster` becomes an abstract base class. Concrete `ChaserMonster` and `LooterMonster` classes are created.
+ *   [✓] **Encapsulation:** Logic is moved into the appropriate classes (e.g., movement logic into `Player`, AI into `Monster` subclasses).
+ 
+ ---
+ 
+ ### [ ] Milestone 5: Items & Inventory
+ 
+ **Objective:** Introduce items, giving all entities a clear goal. This is the first step in establishing the core gameplay loop.
+ 
+ *   [ ] **Update Spawning Logic:** Modify `Game::spawnMonster` to spawn one Chaser (stronger) and one Looter (weaker) per level.
+ *   [ ] **`Item` Class:** Create a base `Item` class and concrete item types (`HealthPotion`, etc.).
+ *   [ ] **Item Spawning:** Spawn a single, valuable item on the grid each level.
+ *   [ ] **Player Inventory:** Add an inventory to the `Player` and implement pickup/use commands.
+ *   [ ] **Update Monster AI:** Make the `LooterMonster`'s primary goal to seek the item.
+ 
+ ---
+ 
+ ### [ ] Milestone 6: Ranged Combat
+ 
+ **Objective:** Evolve combat from simple "bumping" to a tactical, ranged system. This makes positioning and movement far more important.
+ 
+ *   [ ] **`Projectile` Class:** Create a class for projectiles with position, symbol, and direction.
+ *   [ ] **Player Ranged Attack:** Add a command for the player to fire projectiles.
+ *   [ ] **Rework Combat & Damage:** Replace "bump" combat with projectile-based damage. Introduce `attackPower` to entities.
+ *   [ ] **Update Monster AI:** Update `ChaserMonster` to use ranged attacks.
+ 
+ ---
+ 
+ ### [ ] Milestone 7: Multiple Floors & A Goal
+ 
+ **Objective:** Give the game a larger structure and a clear end-goal.
+ 
+ *   [ ] **Dungeon Floors:** Add a `m_currentFloor` counter and a `Stairs` object to descend to a new, harder level.
+ *   [ ] **The Final Goal:** Define a win condition (e.g., retrieve an Amulet on the final floor).
+ *   [ ] **Boss Monster:** (Optional) Create a unique, powerful `BossMonster` to guard the final objective.
+ 
+ ---
+ 
+ ### [ ] Milestone 8: More World Interaction
+ 
+ **Objective:** Make the world feel more alive and strategic.
+ 
+ *   [ ] **More Monster Types:** Add monsters with new behaviors, like `PatrollingMonster`.
+ *   [ ] **Field of View (FOV):** (Advanced) Only draw parts of the map visible to the player.
+ *   [ ] **Traps:** Add invisible traps to the floor that trigger on contact.

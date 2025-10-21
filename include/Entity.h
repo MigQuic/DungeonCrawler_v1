@@ -7,7 +7,7 @@ class Grid;
 class Entity{
     public:
         // // Initialize position (x,y), display symbol (sym) and starting HP
-        Entity(int x, int y, char sym, int hp);  // sym was a char
+        Entity(int x, int y, char sym, int hp);
         virtual ~Entity() = default;
 
         // Provide a default empty implementation.
